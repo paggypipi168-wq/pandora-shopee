@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>潘哆啦的百寶鑲｜蝦皮優惠連結轉換器</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:18px 13px;background:#fff8f4;color:#3d302b;font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif}main{max-width:520px;margin:0 auto;background:#fff;border:1px solid #f2dcd2;border-radius:18px;padding:20px 16px;box-shadow:0 6px 24px #78452a12}h1{text-align:center;font-size:22px;margin:0 0 5px;color:#a94d2e}.sub{text-align:center;color:#89776f;font-size:13px;margin-bottom:16px}.promo{text-align:center;background:#fff0e7;border:1px solid #f6d5c5;color:#a94d2e;border-radius:12px;padding:11px 8px;font-weight:700;font-size:14px;margin-bottom:16px}.counter{display:flex;justify-content:space-between;align-items:center;background:#fff8f4;border:1px solid #f0dfd7;border-radius:10px;padding:11px 12px;margin-bottom:10px;font-size:14px}.counter strong{color:#e56b42;font-size:18px}.hint{font-size:12px;color:#887970;margin:0 0 8px}.fieldtitle{font-weight:700;font-size:15px;margin:14px 0 8px}textarea{display:block;width:100%;min-height:140px;border:1px solid #e8d7cf;border-radius:11px;padding:12px;background:#fff;color:#382d28;font:14px/1.7 system-ui,sans-serif;resize:vertical;outline:none}textarea:focus{border-color:#e58a68;box-shadow:0 0 0 3px #fce9e1}button{width:100%;border:0;border-radius:11px;padding:13px 12px;margin-top:10px;font-size:15px;font-weight:700;cursor:pointer}.primary{background:#e96f45;color:#fff}.clear{background:#f2eeeB;color:#665a54}.copy{background:#51433d;color:#fff}.results{display:grid;gap:9px;margin-top:12px}.result{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid #cdebd8;background:#f0fbf4;border-radius:11px}.result span{font-weight:700;color:#315f42;font-size:14px}.result a{display:inline-block;background:#c9e2fb;color:#174f86;text-decoration:none;font-weight:700;padding:11px 14px;border-radius:9px;white-space:nowrap;font-size:14px}.status{min-height:20px;font-size:12px;color:#46764d;margin-top:9px;line-height:1.5}.note{font-size:11px;color:#94857d;line-height:1.55;border-top:1px solid #f0e6e1;margin-top:16px;padding-top:12px}
+</style></head><body><main>
+<h1>潘哆啦的百寶鑲</h1><div class="sub">蝦皮優惠／分潤連結小幫手</div>
+<div class="promo">貼上商品網址・快速產生分享連結</div>
+<div class="counter"><span>偵測到的網址</span><span><strong id="count">0</strong> ／ 5 個</span></div>
+<div class="hint">一次最多 5 個網址，每行貼上一個蝦皮商品連結。</div>
+<div class="fieldtitle">① 貼上蝦皮商品網址</div>
+<textarea id="src" placeholder="請貼上蝦皮商品網址
+一行一個，最多 5 個"></textarea>
+<button class="primary" id="make">產生連結</button>
+<button class="clear" id="clear" type="button">清除</button>
+<div class="fieldtitle">② 產生的分享連結</div>
+<div id="results" class="results" aria-live="polite"></div>
+<textarea id="out" readonly placeholder="產生後的連結會顯示在這裡" style="margin-top:10px;min-height:90px"></textarea>
+<button class="copy" id="copy" disabled>複製全部連結</button>
+<div class="status" id="status" role="status"></div>
+<div class="note">提醒：產生的連結需先以一筆商品測試，並確認蝦皮分潤後台有正確記錄歸屬；本頁不會登入或保存蝦皮帳號密碼。</div>
+</main><script>
+const affiliateId='16341690006';
+const src=document.getElementById('src'),out=document.getElementById('out'),count=document.getElementById('count'),status=document.getElementById('status'),copy=document.getElementById('copy'),results=document.getElementById('results');
+function lines(){return src.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}
+function updateCount(){const n=lines().length;count.textContent=n;if(n>5){count.style.color='#c0392b';status.textContent='最多只能輸入 5 個網址，請刪除多餘的網址。'}else{count.style.color='';if(status.textContent.startsWith('最多只能'))status.textContent=''}}
+src.addEventListener('input',updateCount);
+function convert(raw){const u=new URL(raw);if(!['shopee.tw','www.shopee.tw','s.shopee.tw'].includes(u.hostname))throw new Error('不是蝦皮網址');return 'https://s.shopee.tw/an_redir?origin_link='+encodeURIComponent(u.href)+'?&affiliate_id='+affiliateId;}
+document.getElementById('make').addEventListener('click',()=>{const items=lines();if(!items.length){status.textContent='請先貼上蝦皮商品網址。';out.value='';copy.disabled=true;return}if(items.length>5){status.textContent='一次最多 5 個網址，請先刪減。';return}const good=[],bad=[];items.forEach((x,i)=>{try{good.push(convert(x))}catch(e){bad.push('第 '+(i+1)+' 筆不是有效的蝦皮網址')}});out.value=good.join('\n');copy.disabled=!good.length;results.innerHTML='';good.forEach((link,i)=>{const row=document.createElement('div');row.className='result';const label=document.createElement('span');label.textContent='🛒 商品'+(i+1);const a=document.createElement('a');a.href=link;a.target='_blank';a.rel='noopener noreferrer';a.textContent='前往購買 →';row.append(label,a);results.appendChild(row)});status.textContent=good.length+' 筆已產生；可直接點「前往購買」開啟蝦皮。'+(bad.length?' '+bad.join('、'):'')});
+document.getElementById('clear').addEventListener('click',()=>{src.value='';out.value='';results.innerHTML='';count.textContent='0';count.style.color='';copy.disabled=true;status.textContent='已清除，可以貼上下一批網址。';src.focus()});
+copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(out.value);status.textContent='已複製全部連結。'}catch(e){out.focus();out.select();status.textContent='請長按結果欄並選擇複製。'}});
+</script></body></html>
