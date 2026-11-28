@@ -1,31 +1,160 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>潘哆啦的百寶鑲｜蝦皮優惠連結轉換器</title>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff6f2">
+<title>潘哆啦的百寶鑲｜蝦皮智慧優惠連結中心</title>
 <style>
-*{box-sizing:border-box}body{margin:0;padding:18px 13px;background:#fff8f4;color:#3d302b;font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif}main{max-width:520px;margin:0 auto;background:#fff;border:1px solid #f2dcd2;border-radius:18px;padding:20px 16px;box-shadow:0 6px 24px #78452a12}h1{text-align:center;font-size:22px;margin:0 0 5px;color:#a94d2e}.sub{text-align:center;color:#89776f;font-size:13px;margin-bottom:16px}.promo{text-align:center;background:#fff0e7;border:1px solid #f6d5c5;color:#a94d2e;border-radius:12px;padding:11px 8px;font-weight:700;font-size:14px;margin-bottom:16px}.counter{display:flex;justify-content:space-between;align-items:center;background:#fff8f4;border:1px solid #f0dfd7;border-radius:10px;padding:11px 12px;margin-bottom:10px;font-size:14px}.counter strong{color:#e56b42;font-size:18px}.hint{font-size:12px;color:#887970;margin:0 0 8px}.fieldtitle{font-weight:700;font-size:15px;margin:14px 0 8px}textarea{display:block;width:100%;min-height:140px;border:1px solid #e8d7cf;border-radius:11px;padding:12px;background:#fff;color:#382d28;font:14px/1.7 system-ui,sans-serif;resize:vertical;outline:none}textarea:focus{border-color:#e58a68;box-shadow:0 0 0 3px #fce9e1}button{width:100%;border:0;border-radius:11px;padding:13px 12px;margin-top:10px;font-size:15px;font-weight:700;cursor:pointer}.primary{background:#e96f45;color:#fff}.clear{background:#f2eeeB;color:#665a54}.copy{background:#51433d;color:#fff}.results{display:grid;gap:9px;margin-top:12px}.result{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid #cdebd8;background:#f0fbf4;border-radius:11px}.result span{font-weight:700;color:#315f42;font-size:14px}.result a{display:inline-block;background:#c9e2fb;color:#174f86;text-decoration:none;font-weight:700;padding:11px 14px;border-radius:9px;white-space:nowrap;font-size:14px}.status{min-height:20px;font-size:12px;color:#46764d;margin-top:9px;line-height:1.5}.note{font-size:11px;color:#94857d;line-height:1.55;border-top:1px solid #f0e6e1;margin-top:16px;padding-top:12px}
-</style></head><body><main>
-<h1>潘哆啦的百寶鑲</h1><div class="sub">蝦皮優惠／分潤連結小幫手</div>
-<div class="promo">貼上商品網址・快速產生分享連結</div>
-<div class="counter"><span>偵測到的網址</span><span><strong id="count">0</strong> ／ 5 個</span></div>
-<div class="hint">一次最多 5 個網址，每行貼上一個蝦皮商品連結。</div>
-<div class="fieldtitle">① 貼上蝦皮商品網址</div>
-<textarea id="src" placeholder="請貼上蝦皮商品網址
-一行一個，最多 5 個"></textarea>
-<button class="primary" id="make">產生連結</button>
-<button class="clear" id="clear" type="button">清除</button>
-<div class="fieldtitle">② 產生的分享連結</div>
-<div id="results" class="results" aria-live="polite"></div>
-<textarea id="out" readonly placeholder="產生後的連結會顯示在這裡" style="margin-top:10px;min-height:90px"></textarea>
-<button class="copy" id="copy" disabled>複製全部連結</button>
-<div class="status" id="status" role="status"></div>
-<div class="note">提醒：產生的連結需先以一筆商品測試，並確認蝦皮分潤後台有正確記錄歸屬；本頁不會登入或保存蝦皮帳號密碼。</div>
-</main><script>
+:root{--rose:#b65f55;--orange:#e9784d;--ink:#493a35;--muted:#8d7b74;--cream:#fff8f4;--line:#f0ded5;--pink:#fff0e9;--green:#eaf7ee}
+*{box-sizing:border-box}
+body{margin:0;padding:18px 13px 36px;background:linear-gradient(180deg,#fff3ed 0,#fffaf7 360px,#fff8f4 100%);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif}
+main{max-width:720px;margin:0 auto}
+.hero{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px 18px 20px;text-align:center;box-shadow:0 10px 32px #78452a10}
+.hero:before,.hero:after{content:"🌹";position:absolute;font-size:34px;opacity:.55;top:16px}
+.hero:before{left:14px}.hero:after{right:14px}
+.mascot{font-size:66px;line-height:1.2;margin:2px auto 8px;filter:drop-shadow(0 5px 5px #b65f5520)}
+h1{font-size:25px;line-height:1.35;margin:4px 0;color:#a95749;letter-spacing:1px}
+.sub{font-size:14px;color:var(--muted);margin:5px 0 0}
+.tagline{display:inline-block;margin-top:13px;padding:9px 16px;border-radius:999px;background:var(--pink);color:#a65d48;font-size:13px;font-weight:700}
+.section{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px 16px;box-shadow:0 5px 18px #78452a08}
+.section-title{font-size:18px;font-weight:800;color:#8f5146;margin:0 0 13px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.step{background:#fff9f6;border:1px solid #f3e4dd;border-radius:15px;padding:13px 10px;text-align:center;min-width:0}
+.step-icon{font-size:35px;line-height:1.35}
+.step b{display:block;font-size:14px;margin:5px 0;color:#765044}
+.step p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
+.tip{margin-top:12px;padding:11px 12px;border-radius:12px;background:#fff5e9;color:#806044;font-size:12px;line-height:1.65}
+.counter{display:flex;justify-content:space-between;align-items:center;background:#fff8f4;border:1px solid var(--line);border-radius:13px;padding:12px 14px;margin:12px 0 8px;font-size:14px}
+.counter strong{font-size:23px;color:var(--orange)}
+.hint{font-size:12px;line-height:1.6;color:var(--muted);margin:0 0 12px}
+label{display:block;font-weight:800;font-size:15px;margin:13px 0 8px}
+textarea{display:block;width:100%;min-height:142px;border:1px solid #e8d7cf;border-radius:13px;padding:13px;background:#fff;color:var(--ink);font:14px/1.7 system-ui,sans-serif;resize:vertical;outline:none}
+textarea:focus{border-color:#e58a68;box-shadow:0 0 0 3px #fce9e1}
+button{width:100%;border:0;border-radius:13px;padding:14px 12px;margin-top:10px;font-size:15px;font-weight:800;cursor:pointer}
+.primary{background:linear-gradient(135deg,#f28a5e,#e66b43);color:#fff;box-shadow:0 5px 12px #e9784d30}
+.clear{background:#f4efec;color:#6d5d56}
+.copy{background:#594943;color:#fff}
+button:disabled{opacity:.48;cursor:not-allowed}
+.results{display:grid;gap:9px;margin-top:12px}
+.result{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid #cdebd8;background:#f0fbf4;border-radius:11px}
+.result span{font-weight:700;color:#315f42;font-size:14px}
+.result a{display:inline-block;background:#d9ebfb;color:#174f86;text-decoration:none;font-weight:700;padding:10px 12px;border-radius:9px;white-space:nowrap;font-size:13px}
+.status{min-height:20px;font-size:12px;color:#46764d;margin-top:9px;line-height:1.5}
+.notice{display:flex;gap:10px;align-items:flex-start;background:#f4f9f4;border:1px solid #dceede;border-radius:14px;padding:13px;margin-top:13px;font-size:12px;line-height:1.65;color:#526d55}
+.notice-icon{font-size:25px}
+.faq{font-size:13px;line-height:1.7;color:#796a63}
+.faq b{color:#765044}
+.footer{text-align:center;color:#a08e86;font-size:11px;line-height:1.6;padding:18px 8px}
+@media(max-width:540px){.steps{grid-template-columns:1fr}.step{display:grid;grid-template-columns:52px 1fr;column-gap:8px;text-align:left;align-items:center}.step-icon{grid-row:1/3;font-size:32px}.step b{margin:0 0 3px}.step p{font-size:12px}.hero{padding-top:22px}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <div class="mascot" aria-label="薔薇貓咪">🐱🌹</div>
+    <h1>潘哆啦的百寶鑲</h1>
+    <div class="sub">蝦皮智慧優惠連結中心</div>
+    <div class="tagline">薔薇貓咪陪你一起找好物 ♡</div>
+  </header>
+
+  <section class="section" aria-labelledby="guide-title">
+    <h2 class="section-title" id="guide-title">🐾 薔薇貓咪教你 3 步驟</h2>
+    <div class="steps">
+      <article class="step">
+        <div class="step-icon">📱</div>
+        <b>STEP 1｜複製商品網址</b>
+        <p>打開蝦皮商品頁，點「分享」，再選「複製連結」。</p>
+      </article>
+      <article class="step">
+        <div class="step-icon">📋</div>
+        <b>STEP 2｜貼上商品網址</b>
+        <p>回到本頁貼上網址，一行一個，每次最多 10 個。</p>
+      </article>
+      <article class="step">
+        <div class="step-icon">🛍️</div>
+        <b>STEP 3｜轉換並複製</b>
+        <p>按下轉換，確認結果後複製連結或點擊前往蝦皮。</p>
+      </article>
+    </div>
+    <div class="tip">💡 小提醒：如果一次有多個商品，請把每個網址分開一行貼上。</div>
+  </section>
+
+  <section class="section" aria-labelledby="convert-title">
+    <h2 class="section-title" id="convert-title">🧡 開始整理你的購物連結</h2>
+    <div class="counter"><span>已輸入商品網址</span><span><strong id="count">0</strong> ／ 10 個</span></div>
+    <p class="hint">每次最多 10 個蝦皮商品網址；網址搜尋與轉換不會扣除優惠券額度。</p>
+    <label for="src">① 貼上蝦皮商品網址</label>
+    <textarea id="src" placeholder="請貼上蝦皮商品網址&#10;一行一個，最多 10 個"></textarea>
+    <button class="primary" id="make" type="button">✨ 轉換優惠購物連結</button>
+    <button class="clear" id="clear" type="button">清除，重新輸入</button>
+    <label for="out">② 轉換完成的購物連結</label>
+    <div id="results" class="results" aria-live="polite"></div>
+    <textarea id="out" readonly placeholder="轉換完成後，連結會顯示在這裡" style="margin-top:10px;min-height:100px"></textarea>
+    <button class="copy" id="copy" type="button" disabled>📎 一鍵複製全部連結</button>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <div class="notice">
+      <div class="notice-icon">🎟️</div>
+      <div><b>優惠券使用提醒</b><br>每個蝦皮帳號每日優惠券可使用張數，依蝦皮平台對該帳號的規則為準（你目前確認的上限為每日 5 張）。商品網址搜尋及轉換不會扣除優惠券額度；實際可領取、使用及剩餘張數，請以蝦皮 App 顯示為準。</div>
+    </div>
+  </section>
+
+  <section class="section faq">
+    <h2 class="section-title">🐱 常見問題</h2>
+    <p><b>Q：為什麼可以輸入 10 個網址？</b><br>A：這是本網站每次轉換的輸入上限，與優惠券張數是不同規則。</p>
+    <p><b>Q：轉換連結後就代表已領到優惠券嗎？</b><br>A：不是。轉換的是商品購物連結；優惠券仍需依蝦皮 App 顯示的資格與活動規則領取、使用。</p>
+    <p><b>Q：連結無法使用怎麼辦？</b><br>A：請確認貼上的是有效的蝦皮商品網址，再重新複製一次。</p>
+  </section>
+
+  <footer class="footer">潘哆啦的百寶鑲｜好物探索・優惠整理・輕鬆購物<br>本頁不會要求你提供蝦皮帳號密碼。</footer>
+</main>
+<script>
 const affiliateId='16341690006';
-const src=document.getElementById('src'),out=document.getElementById('out'),count=document.getElementById('count'),status=document.getElementById('status'),copy=document.getElementById('copy'),results=document.getElementById('results');
+const MAX_URLS=10;
+const src=document.getElementById('src');
+const out=document.getElementById('out');
+const count=document.getElementById('count');
+const status=document.getElementById('status');
+const copy=document.getElementById('copy');
+const results=document.getElementById('results');
 function lines(){return src.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}
-function updateCount(){const n=lines().length;count.textContent=n;if(n>5){count.style.color='#c0392b';status.textContent='最多只能輸入 5 個網址，請刪除多餘的網址。'}else{count.style.color='';if(status.textContent.startsWith('最多只能'))status.textContent=''}}
+function updateCount(){
+  const n=lines().length;
+  count.textContent=n;
+  count.style.color=n>MAX_URLS?'#c0392b':'';
+  if(n>MAX_URLS) status.textContent='每次最多輸入 10 個網址，請刪除多餘的網址。';
+  else if(status.textContent.startsWith('每次最多輸入')) status.textContent='';
+}
 src.addEventListener('input',updateCount);
-function convert(raw){const u=new URL(raw);if(!['shopee.tw','www.shopee.tw','s.shopee.tw'].includes(u.hostname))throw new Error('不是蝦皮網址');return 'https://s.shopee.tw/an_redir?origin_link='+encodeURIComponent(u.href)+'?&affiliate_id='+affiliateId;}
-document.getElementById('make').addEventListener('click',()=>{const items=lines();if(!items.length){status.textContent='請先貼上蝦皮商品網址。';out.value='';copy.disabled=true;return}if(items.length>5){status.textContent='一次最多 5 個網址，請先刪減。';return}const good=[],bad=[];items.forEach((x,i)=>{try{good.push(convert(x))}catch(e){bad.push('第 '+(i+1)+' 筆不是有效的蝦皮網址')}});out.value=good.join('\n');copy.disabled=!good.length;results.innerHTML='';good.forEach((link,i)=>{const row=document.createElement('div');row.className='result';const label=document.createElement('span');label.textContent='🛒 商品'+(i+1);const a=document.createElement('a');a.href=link;a.target='_blank';a.rel='noopener noreferrer';a.textContent='前往購買 →';row.append(label,a);results.appendChild(row)});status.textContent=good.length+' 筆已產生；可直接點「前往購買」開啟蝦皮。'+(bad.length?' '+bad.join('、'):'')});
-document.getElementById('clear').addEventListener('click',()=>{src.value='';out.value='';results.innerHTML='';count.textContent='0';count.style.color='';copy.disabled=true;status.textContent='已清除，可以貼上下一批網址。';src.focus()});
-copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(out.value);status.textContent='已複製全部連結。'}catch(e){out.focus();out.select();status.textContent='請長按結果欄並選擇複製。'}});
-</script></body></html><!-- GitHub Pages redeploy test -->
+function convert(raw){
+  const u=new URL(raw);
+  if(!['shopee.tw','www.shopee.tw','s.shopee.tw'].includes(u.hostname)) throw new Error('不是有效的蝦皮網址');
+  return 'https://s.shopee.tw/an_redir?origin_link='+encodeURIComponent(u.href)+'?&affiliate_id='+affiliateId;
+}
+document.getElementById('make').addEventListener('click',()=>{
+  const items=lines();
+  if(!items.length){status.textContent='請先貼上蝦皮商品網址。';out.value='';copy.disabled=true;return}
+  if(items.length>MAX_URLS){status.textContent='每次最多 10 個網址，請先刪減。';return}
+  const good=[],bad=[];
+  items.forEach((x,i)=>{try{good.push(convert(x))}catch(e){bad.push('第 '+(i+1)+' 筆不是有效的蝦皮網址')}});
+  out.value=good.join('\n');
+  copy.disabled=!good.length;
+  results.innerHTML='';
+  good.forEach((link,i)=>{
+    const row=document.createElement('div');row.className='result';
+    const label=document.createElement('span');label.textContent='🛒 商品 '+(i+1);
+    const a=document.createElement('a');a.href=link;a.target='_blank';a.rel='noopener noreferrer';a.textContent='前往蝦皮 →';
+    row.append(label,a);results.appendChild(row);
+  });
+  status.textContent=good.length+' 筆已產生。'+(bad.length?' '+bad.join('、'):'請先用一筆商品測試是否正確記錄。');
+});
+document.getElementById('clear').addEventListener('click',()=>{
+  src.value='';out.value='';results.innerHTML='';count.textContent='0';count.style.color='';copy.disabled=true;status.textContent='已清除，可以貼上下一批網址。';src.focus();
+});
+copy.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(out.value);status.textContent='已複製全部連結。'}
+  catch(e){out.focus();out.select();status.textContent='請長按結果欄並選擇複製。'}
+});
+</script>
+</body>
+</html>
